@@ -1,24 +1,24 @@
 var Stack = function() {
-  var myStack = Object.create(stackMethods)
-  myStack.storage={};
-  myStack.counter=0;
-
-    return myStack;
-
+  var myStack = Object.create(stackMethods);
+  myStack.storage={}
+  myStack.start=0
+  return myStack;
 };
 
 var stackMethods = {};
 
-stackMethods.size = function(){
-  return Object.keys(this.storage).length
+stackMethods.size=function(){
+  return this.start
 }
 stackMethods.push=function(value){
-   this.storage[this.counter]=value
-   this.counter++
+    this.storage[this.start]=value;
+    this.start++
 }
 stackMethods.pop=function(){
-  var deletedValue=this.storage[this.counter-1]
-  delete this.storage[this.counter-1]
-  this.counter--
-  return deletedValue
+    if (this.start >0){
+      var tempVal=this.storage[this.start-1]
+      this.start--
+      return tempVal
+    }
 }
+

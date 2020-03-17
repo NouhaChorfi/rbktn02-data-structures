@@ -1,28 +1,35 @@
 var Queue = function() {
-    var myQueue = {}
-    myQueue.storage={}
-    myQueue.start = 0
-    myQueue.end = 0
-    _.extend(myQueue, queueMethods)
-    return myQueue
-
+  var myQueue = {}
+  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
+  // but try not not reference your old code in writing the new style.
+  myQueue.instance={};
+  myQueue.start=0;
+  myQueue.end=0
+ _.extend(myQueue, queueMethods)
+ return myQueue
 };
 
 var queueMethods = {};
 
-queueMethods.size = function(){
-  return Object.keys(this.storage).length
+queueMethods.size=function(){
+ return this.end-this.start
 }
 
-queueMethods.enqueue = function(value){
-    this.storage[this.end]=value
-    this.end++
+
+queueMethods.enqueue=function(value){
+  this.instance[this.end]=value
+  this.end++
 }
 
-queueMethods.dequeue = function(){
-  var deletedVal = this.storage[this.start]
-  delete this.storage[this.start]
-  this.start++
-  return deletedVal
+queueMethods.dequeue=function(){
+  if(this.end-this.start>0){
+    var tempval=this.instance[this.start]
+    this.start++
+    return tempval
+  }
+
 }
+
+
+
 

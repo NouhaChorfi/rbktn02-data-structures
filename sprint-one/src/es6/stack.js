@@ -1,8 +1,9 @@
 class Stack {
-
+  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
+  // but try not not reference your old code in writing the new style.
   constructor() {
-    this.storage={};
-    this.start=0;
+    this.storage={}
+    this.start=0
   }
 
   size(){
@@ -14,11 +15,11 @@ class Stack {
   }
   pop(){
     if(this.start>0){
-      var deletedVal=this.storage[this.start-1];
-      delete this.storage[this.start-1]
+      var tempVal=this.storage[this.start-1]
       this.start--
-      return deletedVal
+      return tempVal
+
     }
   }
+
 }
-var stack=new Stack()
