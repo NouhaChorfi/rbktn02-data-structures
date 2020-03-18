@@ -4,44 +4,41 @@ var LinkedList = function() {
   list.tail = null;
 
   list.addToTail = function(value) {
-    var newNode = Node(value);
-      if (this.head === null){
-        this.head = newNode
-        this.tail = newNode
-      } else{
-        this.tail.next= newNode
-        this.tail = newNode
+    if(this.head===null){
+      this.head=Node(value)
+      this.tail=Node(value)
     }
+    else if(this.head.next===null){
+      this.head.next= Node(value)
+      this.tail=Node(value)
+    }
+    else{
+      this.tail.next=Node(value)
+      this.tail=this.tail.next
+    }
+
   };
 
   list.removeHead = function() {
-    var removedHeadVal = this.head.value
-    if(this.head.next === null){
-        this.head = null
-        this.tail=null
-    } else {
-    this.head = this.head.next
-    }
-    return removedHeadVal
+      var tempValue = this.head
+      this.head = this.head.next
+      return tempValue.value
+
   };
 
   list.contains = function(target) {
-    if(this.head === null){
-      return false
-    }
-    var nodeSearch=this.head
-    while(nodeSearch !== null){
-        if(nodeSearch.value === target){
-            return true
+    var elementToVerify=this.head
+    while (elementToVerify !== null){
+        if(elementToVerify.value === target){
+          return true
         }
-        nodeSearch=nodeSearch.next
+        elementToVerify=elementToVerify.next
     }
     return false
   };
 
   return list;
 };
-
 
 var Node = function(value) {
   var node = {};
